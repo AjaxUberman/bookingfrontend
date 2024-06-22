@@ -44,6 +44,5 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.4"
-  },
-  "proxy": "http://bookingfullstack.com.tr"
+  }
 }
