@@ -44,7 +44,6 @@ const PlacePage = () => {
     axios
       .get(`/users/` + placeDatas.owner, { withCredentials: true })
       .then((res) => {
-        console.log(res);
         const { data } = res;
         setPlaceOwner(data);
       });
