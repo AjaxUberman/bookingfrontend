@@ -14,8 +14,7 @@ import PlaceFormPage from "./pages/PlaceFormPage";
 import { useMediaQuery } from "react-responsive";
 import MobilePlacePage from "./pages/MobilePlacePage";
 
-axios.defaults.baseURL =
-  /* process.env.REACT_APP_BACKEND_URL || */ "http://localhost:4000";
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 const AppRouter = () => {
   const isMobile = useMediaQuery({ maxWidth: 567 });
