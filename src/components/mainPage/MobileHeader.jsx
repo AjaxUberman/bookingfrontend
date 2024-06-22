@@ -10,7 +10,6 @@ const Header = () => {
   const menuHandler = () => {
     setMenu(!menu);
   };
-  
 
   const { user } = useContext(UserContext);
 

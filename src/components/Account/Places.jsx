@@ -53,7 +53,7 @@ const Places = () => {
                 <img
                   alt={place.photos[selectedPhoto]}
                   src={
-                    "http://localhost:4000/uploads/" +
+                    "https://bookingfullstack.com.tr/uploads/" +
                     place.photos[selectedPhoto]
                   }
                   className="rounded-xl w-44 h-44 object-cover shadow-md"

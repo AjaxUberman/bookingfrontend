@@ -44,7 +44,7 @@ const MyBookings = () => {
               <div className="flex md:flex-col gap-2 items-center">
                 <h1 className="font-semibold text-xl">{places.place.title}</h1>
                 <img
-                  src={`http://localhost:4000/uploads/${places.place.photos[0]}`}
+                  src={`https://bookingfullstack.com.tr/uploads/${places.place.photos[0]}`}
                   className="w-40 h-40 rounded-xl"
                 />
               </div>

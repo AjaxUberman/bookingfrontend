@@ -40,7 +40,6 @@ const NewHomeImg = ({ addedPhotos, setAddedPhotos }) => {
 
   const photoDeleter = (e, filename) => {
     e.preventDefault();
-    console.log(filename);
     const filteredPhotos = addedPhotos.filter((photo) => photo !== filename);
     setAddedPhotos(filteredPhotos);
   };
@@ -86,7 +85,7 @@ const NewHomeImg = ({ addedPhotos, setAddedPhotos }) => {
               </button>
               <img
                 alt={photo}
-                src={"http://localhost:4000/uploads/" + photo}
+                src={"https://bookingfullstack.com.tr/uploads/" + photo}
                 className="rounded-xl w-full h-20 object-cover shadow-md"
               />
             </div>

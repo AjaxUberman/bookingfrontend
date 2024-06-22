@@ -58,7 +58,7 @@ const MainPage = () => {
                   </button>
                   <img
                     alt={place.photos[selectedPhoto]}
-                    src={`http://localhost:4000/uploads/${
+                    src={`https://bookingfullstack.com.tr/uploads/${
                       selectedPlace === index
                         ? place.photos[selectedValues[index]]
                         : place.photos[0]
