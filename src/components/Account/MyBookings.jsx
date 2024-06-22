@@ -23,24 +23,32 @@ const MyBookings = () => {
     window.location.reload();
   };
 
+  console.log(datas);
+
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="font-bold text-xl border-b mb-5">Enjoy Your Trip!</h1>
-      <div className="grid grid-cols-1 gap-5">
+    <div className="flex flex-col md:h-screen  items-center ">
+      {datas.length > 0 ? (
+        <h1 className="font-bold text-xl border-b mb-5">Enjoy Your Trip!</h1>
+      ) : (
+        <Link to={"/"} className="font-bold text-xl border-b mb-5">
+          You don't have any bookings. Make one now.
+        </Link>
+      )}
+      <div className=" flex flex-col md:flex-row gap-5">
         {datas &&
           datas.map((places, index) => (
             <Link
               to={`/account/places/${places.place._id}`}
-              className="border rounded-xl grid grid-cols-4 items-center gap-4 p-6 shadow-md relative"
+              className="border rounded-xl grid md:grid-cols-4 items-center  gap-4 p-6 shadow-md relative"
             >
-              <div className="flex flex-col gap-2">
+              <div className="flex md:flex-col gap-2 items-center">
                 <h1 className="font-semibold text-xl">{places.place.title}</h1>
                 <img
                   src={`http://localhost:4000/uploads/${places.place.photos[0]}`}
                   className="w-40 h-40 rounded-xl"
                 />
               </div>
-              <div className="col col-span-3 pl-10 flex flex-col gap-4">
+              <div className="col col-span-3 md:pl-10 flex flex-col gap-4">
                 <h2>
                   Your Trip To :
                   <span className="font-semibold ml-3">

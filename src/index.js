@@ -11,10 +11,14 @@ import { UserContextProvider } from "./UserContext";
 import Account from "./pages/Account";
 import PlacePage from "./pages/PlacePage";
 import PlaceFormPage from "./pages/PlaceFormPage";
+import { useMediaQuery } from "react-responsive";
+import MobilePlacePage from "./pages/MobilePlacePage";
 
-axios.defaults.baseURL = "https://booking-bkayikci-fullstack.onrender.com";
+axios.defaults.baseURL =
+  /* process.env.REACT_APP_BACKEND_URL || */ "http://localhost:4000";
 
 const AppRouter = () => {
+  const isMobile = useMediaQuery({ maxWidth: 567 });
   const router = createBrowserRouter([
     {
       path: "/",
@@ -50,7 +54,7 @@ const AppRouter = () => {
         },
         {
           path: `/account/places/:id`,
-          element: <PlacePage />,
+          element: !isMobile ? <PlacePage /> : <MobilePlacePage />,
         },
         {
           path: `/account/places/:id/edit`,

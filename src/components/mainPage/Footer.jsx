@@ -29,7 +29,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="bg-gray-100 border-t flex py-10 px-36 justify-center gap-20 ">
+    <div className="bg-gray-100 border-t flex flex-col md:flex-row py-10 px-36 justify-center gap-20 ">
       <div className="flex flex-col gap-2 ">
         <h1 className="font-semibold">Support</h1>
         {support &&

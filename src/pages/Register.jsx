@@ -11,7 +11,6 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [redirecter, setRedirecter] = useState(false);
   const [confirmations, setConfirmations] = useState(false);
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const passwordChecker = (pass) => {
     const letterReg = /[a-zA-Z]/;
@@ -29,7 +28,7 @@ const Register = () => {
       password === confPass
     ) {
       try {
-        await axios.post(`${backendUrl}/register`, {
+        await axios.post(`/register`, {
           email,
           password,
         });
@@ -68,7 +67,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="email"
-              className="border shadow-md rounded-md pl-4 pr-40 py-3"
+              className="border shadow-md rounded-md pl-4 md:w-96 w-full py-3"
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

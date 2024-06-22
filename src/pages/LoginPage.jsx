@@ -27,7 +27,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="w-full h-screen pt-10 justify-center flex">
+    <div className=" w-full h-screen pt-10 justify-center flex">
       <form
         className="border rounded-md shadow-md w-fit h-fit p-6 flex flex-col gap-4"
         onSubmit={loginHandler}
@@ -47,7 +47,7 @@ const LoginPage = () => {
             value={email}
             placeholder="email"
             onChange={(e) => setEmail(e.target.value)}
-            className="border shadow-md rounded-md pl-4 w-96  py-3"
+            className="border shadow-md rounded-md pl-4 md:w-96 w-full  py-3"
           />
           <input
             type="password"

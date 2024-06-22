@@ -4,6 +4,7 @@ import axios from "axios";
 import { FaCreativeCommonsShare } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "../customcss/datepicker.css";
 import { Link, useLocation } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
 import { differenceInCalendarDays } from "date-fns";
@@ -11,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { IoIosPhotos } from "react-icons/io";
 import { FaWindowClose } from "react-icons/fa";
 
-const PlacePage = () => {
+const MobilePlacePage = () => {
   const [placeDatas, setPlaceDatas] = useState([]);
   const { id } = useParams();
   const [startDate, setStartDate] = useState(new Date());
@@ -104,12 +105,11 @@ const PlacePage = () => {
 
   return (
     <div
-      className={`flex flex-col gap-4 px-20 md:px-4 ${
+      className={`flex flex-col gap-4  md:px-4 ${
         photoActive ? "bg-black bg-opacity-70 fixed inset-0 z-50" : ""
       }`}
     >
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">{placeDatas.title}</h1>
         <div className="flex gap-4">
           {placeOwner && (
             <Link
@@ -133,10 +133,10 @@ const PlacePage = () => {
         </div>
       </div>
       {placeDatas.photos && placeDatas.photos.length > 0 && (
-        <div className="grid grid-cols-2 gap-2 relative">
+        <div className="relative grid gap-4">
           <img
             src={`http://localhost:4000/uploads/${placeDatas.photos[0]}`}
-            className="rounded-xl shadow-md h-80 2xl:h-[450px] w-full object-cover"
+            className="rounded-xl shadow-md h-80 2xl:h-[450px] w-screen object-cover"
           />
           <div
             className={`grid gap-2 ${
@@ -152,8 +152,9 @@ const PlacePage = () => {
               </div>
             ))}
           </div>
+          <h1 className="text-2xl font-bold">{placeDatas.title}</h1>
           <button
-            className="flex bg-gray-100 rounded-xl absolute right-2 bottom-2 items-center py-1 px-4 gap-2"
+            className="flex bg-gray-100 rounded-xl absolute md:right-2 md:bottom-2 top-2 right-2 items-center py-1 px-4 gap-2"
             onClick={() => setPhotoActive(true)}
           >
             <IoIosPhotos />
@@ -182,7 +183,7 @@ const PlacePage = () => {
           )}
         </div>
       )}
-      <div className="grid grid-cols-3 ">
+      <div className="grid md:grid-cols-3 ">
         <div className="col-span-2">
           <div className="border-b flex flex-col gap-4 pr-4">
             <div className="">
@@ -218,7 +219,7 @@ const PlacePage = () => {
           </div>
         </div>
         {/* Prices */}
-        <div className="border  rounded-xl py-8 px-8">
+        <div className="border rounded-xl py-8 px-8">
           <div className="flex gap-2 items-baseline">
             <h1 className="font-semibold  text-xl">
               {placeDatas.price && placeDatas.price.indexOf("$") === -1
@@ -227,10 +228,11 @@ const PlacePage = () => {
             </h1>
             <span>per Night</span>
           </div>
-          <div className="grid grid-cols-2 border border-black rounded-xl  mt-4 ">
+          <div className="grid grid-cols-2 border border-black rounded-xl w-60 md:w-full  mt-4 ">
             <div className="border-b border-r p-2 pl-4 overflow-hidden">
               <h1>Entrance</h1>
               <DatePicker
+                wrapperClassName="datePicker"
                 className="cursor-pointer rounded-xl py-1  font-semibold focus:outline-none w-36"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
@@ -239,6 +241,7 @@ const PlacePage = () => {
             <div className="border-b p-2 overflow-hidden">
               <h1>Exit</h1>
               <DatePicker
+                wrapperClassName="datePicker"
                 className="cursor-pointer rounded-xl py-1 font-semibold focus:outline-none w-36"
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
@@ -301,4 +304,4 @@ const PlacePage = () => {
   );
 };
 
-export default PlacePage;
+export default MobilePlacePage;
