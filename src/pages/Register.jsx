@@ -24,7 +24,7 @@ const Register = () => {
   const registerUser = async (e) => {
     e.preventDefault();
     if (
-      (password.length > 6) & passwordChecker(password) &&
+      (password.length > 5) & passwordChecker(password) &&
       password === confPass
     ) {
       try {
