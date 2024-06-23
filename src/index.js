@@ -17,7 +17,7 @@ import MobilePlacePage from "./pages/MobilePlacePage";
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 const AppRouter = () => {
-  const isMobile = useMediaQuery({ maxWidth: 567 });
+  const isMobile = useMediaQuery({ maxWidth: 667 });
   const router = createBrowserRouter([
     {
       path: "/",

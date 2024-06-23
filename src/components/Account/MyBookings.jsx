@@ -34,12 +34,12 @@ const MyBookings = () => {
           You don't have any bookings. Make one now.
         </Link>
       )}
-      <div className=" flex flex-col md:flex-row gap-5">
+      <div className=" grid grid-cols-1 md:grid-cols-2  gap-5">
         {datas &&
           datas.map((places, index) => (
             <Link
               to={`/account/places/${places.place._id}`}
-              className="border rounded-xl grid md:grid-cols-4 items-center  gap-4 p-6 shadow-md relative"
+              className="border rounded-xl grid md:grid-cols-2 items-center  gap-4 p-6 shadow-md relative"
             >
               <div className="flex md:flex-col gap-2 items-center">
                 <h1 className="font-semibold text-xl">{places.place.title}</h1>

@@ -12,7 +12,7 @@ const Header = () => {
   const menuHandler = () => {
     setMenu(!menu);
   };
-  const isMobile = useMediaQuery({ maxWidth: 567 });
+  const isMobile = useMediaQuery({ maxWidth: 667 });
 
   const { user } = useContext(UserContext);
 

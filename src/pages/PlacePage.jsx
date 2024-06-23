@@ -132,7 +132,7 @@ const PlacePage = () => {
         </div>
       </div>
       {placeDatas.photos && placeDatas.photos.length > 0 && (
-        <div className="grid grid-cols-2 gap-2 relative">
+        <div className="grid grid-cols-2 gap-2 relative ">
           <img
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${placeDatas.photos[0]}`}
             className="rounded-xl shadow-md h-80 2xl:h-[450px] w-full object-cover"
@@ -146,7 +146,7 @@ const PlacePage = () => {
               <div className="" key={index}>
                 <img
                   src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
-                  className="rounded-xl shadow-md h-40 w-full object-cover"
+                  className="rounded-xl shadow-md 2xl:h-56 h-40 w-full object-cover"
                 />
               </div>
             ))}
