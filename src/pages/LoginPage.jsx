@@ -19,7 +19,7 @@ const LoginPage = () => {
         { withCredentials: true }
       );
       setUser(response.data);
-      alert("login successfull");
+      alert("login successful");
       setRedirect(true);
     } catch (error) {
       alert("login failed");
