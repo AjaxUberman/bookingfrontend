@@ -85,7 +85,7 @@ const NewHomeImg = ({ addedPhotos, setAddedPhotos }) => {
               </button>
               <img
                 alt={photo}
-                src={"https://bookingfullstack.com.tr/uploads/" + photo}
+                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/` + photo}
                 className="rounded-xl w-full h-20 object-cover shadow-md"
               />
             </div>

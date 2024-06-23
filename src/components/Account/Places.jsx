@@ -53,7 +53,7 @@ const Places = () => {
                 <img
                   alt={place.photos[selectedPhoto]}
                   src={
-                    "https://bookingfullstack.com.tr/uploads/" +
+                    `${process.env.REACT_APP_BACKEND_URL}/uploads/` +
                     place.photos[selectedPhoto]
                   }
                   className="rounded-xl w-44 h-44 object-cover shadow-md"

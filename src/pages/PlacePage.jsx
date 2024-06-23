@@ -134,7 +134,7 @@ const PlacePage = () => {
       {placeDatas.photos && placeDatas.photos.length > 0 && (
         <div className="grid grid-cols-2 gap-2 relative">
           <img
-            src={`https://bookingfullstack.com.tr/uploads/${placeDatas.photos[0]}`}
+            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${placeDatas.photos[0]}`}
             className="rounded-xl shadow-md h-80 2xl:h-[450px] w-full object-cover"
           />
           <div
@@ -145,7 +145,7 @@ const PlacePage = () => {
             {placeDatas.photos.slice(1).map((photo, index) => (
               <div className="" key={index}>
                 <img
-                  src={`https://bookingfullstack.com.tr/uploads/${photo}`}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
                   className="rounded-xl shadow-md h-40 w-full object-cover"
                 />
               </div>
@@ -170,7 +170,7 @@ const PlacePage = () => {
                 {placeDatas.photos.map((photo, index) => (
                   <div key={index} className="mb-4">
                     <img
-                      src={`https://bookingfullstack.com.tr/uploads/${photo}`}
+                      src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
                       className="max-w-full h-auto rounded-lg shadow-md"
                       alt={`Photo ${index + 1}`}
                     />
