@@ -12,7 +12,7 @@ import { IoIosPhotos } from "react-icons/io";
 import { FaWindowClose } from "react-icons/fa";
 
 const PlacePage = () => {
-  const [placeDatas, setPlaceDatas] = useState([]);
+  const [placeDatas, setPlaceDatas] = useState(null);
   const { id } = useParams();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -31,22 +31,32 @@ const PlacePage = () => {
     if (!id) {
       return;
     }
-    axios.get(`/places/` + id, { withCredentials: true }).then((res) => {
-      const { data } = res;
-      setPlaceDatas(data);
-    });
+    const dataHandler = async () => {
+      try {
+        const res = await axios.get(`/places/${id}`, {
+          withCredentials: true,
+        });
+        const { data } = res;
+        setPlaceDatas(data);
+      } catch (error) {
+        console.error("Error fetching place data:", error);
+      }
+    };
+    dataHandler();
   }, [id]);
 
   useEffect(() => {
     if (!placeDatas || !placeDatas.owner) {
       return;
     }
-    axios
-      .get(`/users/` + placeDatas.owner, { withCredentials: true })
-      .then((res) => {
-        const { data } = res;
-        setPlaceOwner(data);
-      });
+    const dataHandler = async () =>
+      await axios
+        .get(`/users/` + placeDatas.owner, { withCredentials: true })
+        .then((res) => {
+          const { data } = res;
+          setPlaceOwner(data);
+        });
+    dataHandler();
   }, [placeDatas]);
 
   const copyToClipboard = () => {
@@ -62,6 +72,9 @@ const PlacePage = () => {
   };
 
   useEffect(() => {
+    if (!placeDatas) {
+      return;
+    }
     const finalPrice =
       parseFloat(placeDatas.price && placeDatas.price.replace("$", "")) *
       differenceInCalendarDays(endDate, startDate);

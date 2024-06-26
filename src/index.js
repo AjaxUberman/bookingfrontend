@@ -13,8 +13,10 @@ import PlacePage from "./pages/PlacePage";
 import PlaceFormPage from "./pages/PlaceFormPage";
 import { useMediaQuery } from "react-responsive";
 import MobilePlacePage from "./pages/MobilePlacePage";
+import { HashRouter } from "react-router-dom";
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
+axios.defaults.withCredentials = true;
 
 const AppRouter = () => {
   const isMobile = useMediaQuery({ maxWidth: 667 });
