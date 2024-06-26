@@ -33,19 +33,29 @@ const Footer = () => {
       <div className="flex flex-col gap-2 ">
         <h1 className="font-semibold">Support</h1>
         {support &&
-          support.map((sup, index) => <div className="opacity-70">{sup}</div>)}
+          support.map((sup, index) => (
+            <div className="opacity-70" key={index}>
+              {sup}
+            </div>
+          ))}
       </div>
       <div className="flex flex-col gap-2 ">
         <h1 className="font-semibold">Hosting</h1>
         {hosting &&
           hosting.map((host, index) => (
-            <div className="opacity-70">{host}</div>
+            <div className="opacity-70" key={index}>
+              {host}
+            </div>
           ))}
       </div>
       <div className="flex flex-col gap-2 ">
         <h1 className="font-semibold">Extras</h1>
         {airbnb &&
-          airbnb.map((air, index) => <div className="opacity-70">{air}</div>)}
+          airbnb.map((air, index) => (
+            <div className="opacity-70" key={index}>
+              {air}
+            </div>
+          ))}
       </div>
     </div>
   );

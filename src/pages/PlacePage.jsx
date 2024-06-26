@@ -25,39 +25,50 @@ const PlacePage = () => {
   const [photoActive, setPhotoActive] = useState(false);
 
   const navigate = useNavigate();
-  const days = differenceInCalendarDays(endDate, startDate);
 
   useEffect(() => {
     if (!id) {
       return;
     }
-    const dataHandler = async () => {
+    const fetchPlaceData = async () => {
       try {
         const res = await axios.get(`/places/${id}`, {
           withCredentials: true,
         });
-        const { data } = res;
-        setPlaceDatas(data);
+        setPlaceDatas(res.data);
       } catch (error) {
         console.error("Error fetching place data:", error);
       }
     };
-    dataHandler();
+    fetchPlaceData();
   }, [id]);
 
   useEffect(() => {
     if (!placeDatas || !placeDatas.owner) {
       return;
     }
-    const dataHandler = async () =>
-      await axios
-        .get(`/users/` + placeDatas.owner, { withCredentials: true })
-        .then((res) => {
-          const { data } = res;
-          setPlaceOwner(data);
+    const fetchPlaceOwner = async () => {
+      try {
+        const res = await axios.get(`/users/${placeDatas.owner}`, {
+          withCredentials: true,
         });
-    dataHandler();
+        setPlaceOwner(res.data);
+      } catch (error) {
+        console.error("Error fetching place owner:", error);
+      }
+    };
+    fetchPlaceOwner();
   }, [placeDatas]);
+
+  useEffect(() => {
+    if (!placeDatas || startDate >= endDate) {
+      return;
+    }
+    const finalPrice =
+      parseFloat(placeDatas.price?.replace("$", "")) *
+      differenceInCalendarDays(endDate, startDate);
+    setTotalPrice(finalPrice);
+  }, [startDate, endDate, guest, placeDatas]);
 
   const copyToClipboard = () => {
     const currentURL = window.location.href;
@@ -71,23 +82,14 @@ const PlacePage = () => {
       });
   };
 
-  useEffect(() => {
-    if (!placeDatas) {
-      return;
-    }
-    const finalPrice =
-      parseFloat(placeDatas.price && placeDatas.price.replace("$", "")) *
-      differenceInCalendarDays(endDate, startDate);
-    setTotalPrice(finalPrice);
-  }, [guest]);
-
   const makeBooking = async (e) => {
     e.preventDefault();
-    if (placeOwner === false) {
-      alert("Need to Login before booking");
+    if (!placeOwner) {
+      alert("Please login before booking");
       navigate("/login");
+      return;
     }
-    if (days > 0 && guest > 0) {
+    if (endDate > startDate && guest > 0) {
       setBookingError(false);
       try {
         const bookingData = {
@@ -100,11 +102,10 @@ const PlacePage = () => {
         await axios.post(`/booking`, bookingData, {
           withCredentials: true,
         });
+        navigate("/account/bookings");
       } catch (error) {
-        console.log(error);
+        console.error("Error making booking:", error);
       }
-
-      navigate("/account/bookings");
     } else {
       setBookingError(true);
     }
