@@ -19,7 +19,7 @@ const MobilePlacePage = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [guest, setGuest] = useState(0);
   const location = useLocation();
-  const [currentPath, setCurrentPath] = useState(location.pathname);
+  const [currentPath] = useState(location.pathname);
   const [placeOwner, setPlaceOwner] = useState("");
   const [totalPrice, setTotalPrice] = useState("");
   const [bookingError, setBookingError] = useState(false);
@@ -68,7 +68,7 @@ const MobilePlacePage = () => {
       parseFloat(placeDatas.price && placeDatas.price.replace("$", "")) *
       differenceInCalendarDays(endDate, startDate);
     setTotalPrice(finalPrice);
-  }, [guest]);
+  }, [guest, placeDatas.price, endDate, startDate]);
 
   const makeBooking = async (e) => {
     e.preventDefault();
@@ -135,6 +135,7 @@ const MobilePlacePage = () => {
       {placeDatas.photos && placeDatas.photos.length > 0 && (
         <div className="relative grid gap-4">
           <img
+            alt={placeDatas.photos[0]}
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${placeDatas.photos[0]}`}
             className="rounded-xl shadow-md h-80 2xl:h-[450px] w-screen object-cover"
           />
@@ -146,6 +147,7 @@ const MobilePlacePage = () => {
             {placeDatas.photos.slice(1).map((photo, index) => (
               <div className="" key={index}>
                 <img
+                  alt={photo}
                   src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
                   className="rounded-xl shadow-md h-40 w-full object-cover"
                 />
@@ -172,9 +174,9 @@ const MobilePlacePage = () => {
                 {placeDatas.photos.map((photo, index) => (
                   <div key={index} className="mb-4">
                     <img
+                      alt={photo}
                       src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
                       className="max-w-full h-auto rounded-lg shadow-md"
-                      alt={`Photo ${index + 1}`}
                     />
                   </div>
                 ))}
@@ -194,9 +196,9 @@ const MobilePlacePage = () => {
               </h2>
               <div className="">
                 <span>{placeDatas.maxGuests} Guests</span>
-                <a> - </a>
+                <p> - </p>
                 <span>{placeDatas.checkIn} Check In</span>
-                <a> - </a>
+                <p> - </p>
                 <span>{placeDatas.checkOut} Check Out</span>
               </div>
             </div>

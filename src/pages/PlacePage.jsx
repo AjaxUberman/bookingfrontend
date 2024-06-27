@@ -18,7 +18,7 @@ const PlacePage = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [guest, setGuest] = useState(0);
   const location = useLocation();
-  const [currentPath, setCurrentPath] = useState(location.pathname);
+  const [currentPath] = useState(location.pathname);
   const [placeOwner, setPlaceOwner] = useState("");
   const [totalPrice, setTotalPrice] = useState("");
   const [bookingError, setBookingError] = useState(false);
@@ -148,6 +148,7 @@ const PlacePage = () => {
       {placeDatas.photos && placeDatas.photos.length > 0 && (
         <div className="grid grid-cols-2 gap-2 relative ">
           <img
+            alt={placeDatas.photos[0]}
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${placeDatas.photos[0]}`}
             className="rounded-xl shadow-md h-80 2xl:h-[450px] w-full object-cover"
           />
@@ -159,6 +160,7 @@ const PlacePage = () => {
             {placeDatas.photos.slice(1).map((photo, index) => (
               <div className="" key={index}>
                 <img
+                  alt={photo}
                   src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
                   className="rounded-xl shadow-md 2xl:h-56 h-40 w-full object-cover"
                 />
@@ -184,9 +186,9 @@ const PlacePage = () => {
                 {placeDatas.photos.map((photo, index) => (
                   <div key={index} className="mb-4">
                     <img
+                      alt={photo}
                       src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
                       className="max-w-full h-auto rounded-lg shadow-md"
-                      alt={`Photo ${index + 1}`}
                     />
                   </div>
                 ))}
@@ -204,11 +206,11 @@ const PlacePage = () => {
                   ? placeDatas.description.split(0, 25).concat("...")
                   : placeDatas.description}
               </h2>
-              <div className="">
-                <span>{placeDatas.maxGuests} Guests</span>
-                <a> - </a>
+              <div className="flex gap-4">
+                <span>{placeDatas.maxGuests} Guests </span>
+                <p> - </p>
                 <span>{placeDatas.checkIn} Check In</span>
-                <a> - </a>
+                <p> - </p>
                 <span>{placeDatas.checkOut} Check Out</span>
               </div>
             </div>
